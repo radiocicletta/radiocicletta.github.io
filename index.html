@@ -6,6 +6,51 @@
     <title>lab.radiocicletta</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css"/>
+    <style>
+        .panel {
+            border-radius: 0;
+            border:none;
+            -webkit-box-shadow: 0px 1px 6px rgba(0,0,0,.05);
+            box-shadow: 0px 1px 6px rgba(0,0,0,.05);
+        }
+        .panel-default > .panel-heading {
+            border-radius: 0;
+            border:none;
+            background-color: #eee;
+            background-image: none;
+        }
+        .panel-default > .panel-footer {
+            text-overflow: ellipsis;
+            overflow: auto;
+        }
+        .jumbotron {
+            color: #eee;
+            background-color: #333
+        }
+        .inverted {
+            background: #eee;
+        } 
+        .inverted .panel-default > .panel-heading {
+            color: #eee;
+            background-color: #333
+        }
+        .active, .hold, .inactive {
+            color: #fff;
+            text-shadow: -1px -1px 0px rgba(0, 0, 0, 0.3);
+            font-variant: capitalize;
+            padding: 3px;
+            border-radius: 2px;
+        }
+        .active {
+            background: green;
+        }
+        .hold {
+            background: orange;
+        }
+        .inactive {
+            background: red;
+        }
+    </style>
 </head>
 <body>
 <div class="jumbotron">
@@ -16,92 +61,114 @@
     </div>
 </div>
 <div class="container">
-    <h1 class="page-header">Welcome!</h1>
-    <p class="lead">In this place we host our project developed by
-        <a href="http://www.radiocicletta.it">Radiocicletta</a> team.
-        <a href="http://www.radiocicletta.it"><strong>Radiocicletta</strong></a>
-        is a non-commercial, no profit web radio based in Pisa,
-        Italy.</p>
-    <p><strong>We <a href="http://github.com/radiocicletta">create, develop and
-                fork</a> several FL/OSS project </strong> in order to solve complex
-        problems and/or tedious jobs encountered in the management of a
-        growing-up radio. The main focus are:
-    </p>
-    <ul>
-        <li>Radio automation and automatic catalogation</li>
-        <li>Broadcast quality improvements and reliability 24/7</li>
-        <li>On Air and Off Air automatic audio processing</li>
-        <li>Real time analytics and statistics on listeners</li>
-    </ul>
-    <p><strong>We encourage everyone to download, use, edit, and improve the
-            code of every project.</strong>. We publish our code under GPL and
-        WTFPL licenses.</p>
     <div class="row">
-        <section class="col-md-6">
-            <h2><span class="glyphicon glyphicon-star"></span>Current projects</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Morganfreeman</h3>
-                        </div>
-                        <div class="panel-body">
-                            <p>A simple, reliable, real time, web based analytics solution to collect
-                        informations based on real streaming listeners, not just visitors.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Catalog</h3>
-                        </div>
-                        <div class="panel-body">
-                            <p>An automatic audio songs catalog, relying on ID3(v2) data, audio
-                                fingerprinting and Musicbrainz/LastFM/Discogs metadata querying</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Cloudice</h3>
-                        </div>
-                        <div class="panel-body">
-                            <p>A simple icecast streamer based on SoundCloud feed.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Radiociblog</h3>
-                        </div>
-                        <div class="panel-body">
-                            <p>A overly massive cumbersome blog framwork</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Radiociblog Api</h3>
-                        </div>
-                        <div class="panel-body">
-                            <p>Various tools and apis for social networks</p>
-                        </div>
-                    </div>
-                </div>
+        <section class="col-md-6 inverted">
+            <h2>Current projects</h2>
+            <div class="row" id="repos">
             </div>
         </section>
         <section class="col-md-6">
-            <h2><span class="glyphicon glyphicon-cog"></span>Forks and contributions</h2>
-            <h3>ua-parser-js</h3>
-            <h3>rotter</h3>
-            <h3>icecast-proxy</h3>
-            <h3>vlevel</h3>
+            <h2>Forks and contributions</h2>
+            <div class="row" id="forks">
+            </div>
         </section>
     </div>
 </div>
+<footer class="panel-footer">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="lead">In this place we host our project developed by
+                <a href="http://www.radiocicletta.it">Radiocicletta</a> team.
+                <a href="http://www.radiocicletta.it"><strong>Radiocicletta</strong></a>
+                is a non-commercial, no profit web radio based in Pisa,
+                Italy.</p>
+            <div class="col-md-4">
+                <p><strong>We <a href="http://github.com/radiocicletta">create, develop and
+                            fork</a> several FL/OSS project </strong> in order to solve complex
+                    problems and/or tedious jobs encountered in the management of a
+                    growing-up radio.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <p>The main focus are:</p>
+                <ul>
+                    <li>Radio automation and automatic catalogation</li>
+                    <li>Broadcast quality improvements and reliability 24/7</li>
+                    <li>On Air and Off Air automatic audio processing</li>
+                    <li>Real time analytics and statistics on listeners</li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <p><strong>We encourage everyone to download, use, edit, and improve the
+                        code of every project.</strong>. We publish our code under GPL and
+                    WTFPL licenses.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <p><small>
+                    <a href="http://radiocicletta.it">http://www.radiocicletta.it</a> • 
+                    <a href="http://github.com/radiocicletta.it">http://github.com/radiocicletta.it</a> • 
+                    <a href="http://mixcloud.com/radiocicletta">http://mixcloud.com/radiocicletta</a> • 
+                    <a href="http://facebook.com/radiocicletta">http://facebook.com/radiocicletta</a>
+            </small></p>
+        </div>
+    </div>
+</footer>
 </body>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/zepto/1.1.4/zepto.min.js"></script>
+<script>
+
+    
+    var tmpl = '<div class="col-md-{colspan}">' +
+              '      <div class="panel panel-default">' +
+              '          <div class="panel-heading">' +
+              '              <h3 class="panel-title"><a href="{url}">{title}<\/a><\/h3>' +
+              '          <\/div>' +
+              '          <div class="panel-body">' +
+              '              <p><small>current status: <strong class="{statuscss}">{status}<\/strong><\/small><\/p>' +
+              '              <p>{description}<\/p>' +
+              '              <p><small>last update: {update}<\/small><\/p>' +
+              '          <\/div>' +
+              '          <div class="panel-footer">' +
+              '              <a href="{url}">{url}<\/a>' +
+              '          <\/div>' +
+              '      <\/div>' +
+              '  <\/div>';
+
+    function fill(id, values, idx){
+        var status = (new Date() - new Date(values.pushed_at))/1000;
+        requestAnimationFrame(function(){
+        $(id).append(tmpl
+                     .replace('{title}', values.name)
+                     .replace('{description}', values.description)
+                     .replace('{colspan}', idx < 2? '12': '6')
+                     .replace(/{url}/g, values.svn_url)
+                     .replace('{update}', values.pushed_at)
+                     .replace('{status}', status < 15552000? 'active': status < 31104000? 'hold': 'inactive')
+                     .replace('{statuscss}', status < 15552000? 'active': status < 31104000? 'hold': 'inactive')
+                    );
+        });
+    }
+
+    $.getJSON(
+        'https://api.github.com/users/radiocicletta/repos?callback=?',
+        function(data){
+            var values = data.data.sort(function(a, b){return new Date(b.pushed_at) - new Date(a.pushed_at)}),
+                repos = values.filter(function(el, idx, ar){ return !el.fork }),
+                forks = values.filter(function(el, idx, ar){ return el.fork });
+
+            repos.forEach(
+                function(el, idx, ar){
+                    fill("#repos", el, idx);
+                });
+
+            forks.forEach(
+                function(el, idx, ar){
+                    fill("#forks", el, idx);
+                });
+        }
+    )
+</script>
 </html>
